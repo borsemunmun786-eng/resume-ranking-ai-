@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume Ranking AI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+
+<!-- Animated Background -->
+<div class="bg-animation">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+<div class="particles" id="particles"></div>
+
+<div class="wrapper">
+
+  <!-- Header -->
+  <header>
+    <div class="logo-icon">🤖</div>
+    <h1>Resume Ranking AI</h1>
+    <p>Upload multiple resumes, paste a job description, and let AI rank the best candidates instantly.</p>
+  </header>
+
+  <!-- Stats Pills -->
+  <div class="stats-bar">
+    <div class="stat-pill"><span class="dot"></span> AI-Powered Ranking</div>
+    <div class="stat-pill"><span class="dot"></span> TF-IDF + Cosine Similarity</div>
+    <div class="stat-pill"><span class="dot"></span> PDF · DOCX · TXT</div>
+    <div class="stat-pill"><span class="dot"></span> Instant Results</div>
+  </div>
+
+  <!-- Main Form Card -->
+  <div class="main-card">
+    <div class="section-label">Step 1 — Job Description</div>
+    <form id="rank-form" enctype="multipart/form-data">
+
+      <label class="jd-label" for="job-description">Paste the Job Description</label>
+      <textarea
+        id="job-description"
+        name="job_description"
+        placeholder="e.g. We are looking for a Python developer with 3+ years experience in Flask, REST APIs, PostgreSQL, Docker, and cloud platforms such as AWS or GCP. Strong communication and teamwork skills required..."
+        rows="7"
+      ></textarea>
+
+      <!-- Upload Zone -->
+      <div style="margin-top:28px">
+        <div class="section-label">Step 2 — Upload Resumes</div>
+        <div class="upload-zone" id="drop-zone">
+          <input type="file" id="file-input" multiple accept=".pdf,.docx,.txt" />
+          <span class="upload-icon">📂</span>
+          <h3>Drag & Drop Resumes Here</h3>
+          <p>or click to browse files</p>
+          <div class="file-types">
+            <span class="file-type-badge">PDF</span>
+            <span class="file-type-badge">DOCX</span>
+            <span class="file-type-badge">TXT</span>
+          </div>
+        </div>
+        <div id="file-list"></div>
+      </div>
+
+      <!-- Error Box -->
+      <div class="error-box" id="error-box"></div>
+
+      <!-- Submit -->
+      <button type="submit" class="btn-rank" id="submit-btn">
+        <span class="btn-text">
+          <span>🚀</span>
+          <span>Rank Resumes with AI</span>
+        </span>
+      </button>
+
+    </form>
+  </div>
+
+  <!-- Loader -->
+  <div class="loader" id="loader">
+    <div class="spinner"></div>
+    <div class="loader-text">Analyzing resumes with AI… please wait</div>
+  </div>
+
+  <!-- Warning -->
+  <div class="warning-box" id="warning-box"></div>
+
+  <!-- Results -->
+  <div id="results-section" style="display:none">
+    <div class="results-header">
+      <h2>📊 Ranking Results</h2>
+      <span class="results-count" id="results-count"></span>
+    </div>
+    <div id="results-list"></div>
+  </div>
+
+</div><!-- /wrapper -->
+
+<footer>
+  Built with Flask · scikit-learn · NLTK &nbsp;|&nbsp; Resume Ranking AI &copy; 2025
+</footer>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
